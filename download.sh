@@ -3,9 +3,8 @@
 set -e
 
 OUT_DIR=$1
-LOG_FILE=$2
 
 echo "Starting gmail-dl..."
-source ./creds.sh
-gmail-dl ${OUT_DIR} --days 2 --log ${LOG_FILE}
+source ~/cam/reolink-gmail-archival/creds.sh
+gmail-dl ${OUT_DIR} --days 2 --log ~/cam/log/gmail-dl.log
 echo "Done!"

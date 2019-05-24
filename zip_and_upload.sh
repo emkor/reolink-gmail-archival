@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 set -e
+
 IN_DIR=$1
 TMP_DIR=$2
 
 echo "Running cam data archival job..."
-source ./creds.sh
+source ~/cam/reolink-gmail-archival/creds.sh
 b2 authorize-account ${B2_KEY_ID} ${B2_APP_KEY}
 TODAY=$(date --iso-8601 --utc)
 TMP_ZIP="$TMP_DIR/$TODAY.zip"
