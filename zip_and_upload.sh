@@ -18,7 +18,7 @@ echo "Archiving $FILE_COUNT files on $TODAY using $TMP_DIR ..."
 for f in ${FILE_LIST}; do mv ${f} ${TMP_DIR}; done
 
 echo "Zipping into $TMP_ZIP..."
-zip -r -j -1 ${TMP_ZIP} ${TMP_DIR}
+zip -r -j -1 -q ${TMP_ZIP} ${TMP_DIR}
 
 echo "Uploading $TMP_ZIP into $B2_BUCKET/$TMP_ZIP_NAME..."
 b2 upload-file --noProgress ${B2_BUCKET} ${TMP_ZIP} ${TMP_ZIP_NAME}
