@@ -3,8 +3,8 @@
 set -e
 
 
-mkdir -p ~/cam/log && mkdir -p ~/cam/data && cd ~/cam
+mkdir -p ~/cam/log && mkdir -p ~/cam/data && mkdir -p ~/cam/upload && cd ~/cam
 
 git clone https://github.com/emkor/gmail-img-dl.git && cd ~/cam/gmail-img-dl
-sudo pip install -e ".[dev]"
+sudo pip install -e .
 gmail-dl --help
