@@ -1,0 +1,26 @@
+version: "3.4"
+
+services:
+  recogn:
+    image: emkor/recogn-img:x86-cpu-aio
+    restart: "no"
+    command: recogn-img /src/yolov3.h5 /src/coco_classes.txt /image /result/results.json --box-threshold 0.4 --obj-threshold 0.5 --verbose
+    volumes:
+      - ./tmp_image:/image:ro
+      - ./tmp_result:/result
+
+  filter:
+    image: emkor/recogn-img:x86-cpu-aio
+    restart: "no"
+    command: result-filter /result/results.json /result/results_filtered.json --whitelist car,truck,train,motorbike,bus,boat,aeroplane,bicycle,person,dog,cow,horse,cat,sheep,bear,elephant,zebra,bird,giraffe
+    volumes:
+      - ./tmp_result:/result
+
+  render:
+    image: emkor/recogn-img:x86-cpu-aio
+    restart: "no"
+    command: render-recogn --copy-exif /result/results_filtered.json /render
+    volumes:
+      - ./tmp_image:/image:ro
+      - ./tmp_result:/result
+      - ./tmp_render:/render
