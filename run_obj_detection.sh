@@ -19,7 +19,6 @@ do
   mv $d/* tmp_image
   mkdir -p $RENDER_PATH
   mkdir -p $RESULT_PATH
-  docker-compose down
   echo "Starting object detection job for $d ($IMG_COUNT_BEFORE images) with output path of $RENDER_PATH"
   docker-compose up --no-color recogn
   docker-compose up --no-color filter
@@ -33,4 +32,4 @@ done
 
 docker-compose down
 
-# nohup ~/run_obj_detection.sh ~/dl_img ~/result ~/render >> ~/obj_detection.log 2>&1 &
+# nohup ./run_obj_detection.sh ./dl_img ./result ./render >> ./obj_detection.log 2>&1 &
